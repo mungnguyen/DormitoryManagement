@@ -1,0 +1,28 @@
+.menu {
+    background-color: rgb(219, 219, 219);
+    border: 1px white solid;
+    padding: 0;
+    width: 90%;
+}
+
+.menu_item {
+    background-color: grey;
+    border: 1px white solid;
+    height: 60px;
+}
+
+.menu_item:hover {
+    background-color: black;
+}
+
+.menu_icon {
+    color: white;
+    margin-left: 30px;
+    margin-top: 15px;
+}
+
+.menu_content {
+    color: white;
+    font-size: 16px;
+    margin-left: 15px;
+}

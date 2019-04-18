@@ -1,0 +1,35 @@
+.header {
+    background-color: grey;
+}
+
+.logoAdmin{
+    width: 40px;
+    height: 40px;
+}
+
+.searchbar{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+.search_input{
+color: white;
+    border: 1px black;
+    background: none;
+    width: 100%;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+}
+
+
+.search_icon{
+    margin-top: 10px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}

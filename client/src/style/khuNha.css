@@ -1,0 +1,21 @@
+.khuNha_item {
+    margin-top: 20px;
+}
+
+.khuNhaImage {
+    width: 150px;
+    height: 150px;
+}
+
+.tenKhuNha {
+    margin-top: 10px;
+    color: rgb(50, 128, 245);
+}
+
+.themKhuNha{
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(50, 128, 245);
+}
