@@ -20,14 +20,25 @@ export default function(state = initialState, action) {
 
     case THEM_KHU_NHA: {
       const khuNha = action.payload;
-      return [
+      return {
         ...state,
         ...khuNha
-      ];
+      };
+    }
+
+    case SUA_KHU_NHA: {
+      // const khuNha = action.payload
+      const khuNhas = state.khuNhas.filter(khuNha => khuNha.khuNhaId != action.payload.khuNhaId);
+      return {
+        ...state, khuNhas
+      }
     }
 
     case XOA_KHU_NHA: {
-        break;
+      const khuNhas = state.khuNhas.filter(khuNha => khuNha.khuNhaId != action.payload);
+      return {
+        ...state, khuNhas
+      }
     }
 
     default:

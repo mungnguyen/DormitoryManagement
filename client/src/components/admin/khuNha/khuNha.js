@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Input, Col } from 'reactstrap';
 import khuNha_icon from '../../../images/admin/khuNha_icon.png';
-import { suaKhuNha, xoaKhuNha } from '../../../actions/khuNhaActions';
+// import { suaKhuNha, xoaKhuNha } from '../../../actions/khuNhaActions';
 import '../../../style/khuNha.css';
 import '../../../style/style1.css';
 import '../../../style/style_common.css';
 
-class KhuNha extends Component {
+export default class KhuNha extends Component {
     constructor(props) {
         super(props);
 
@@ -38,15 +38,11 @@ class KhuNha extends Component {
 
     handleChangeName = () => {
         this.props.suaKhuNha(this.props.khuNhaId, this.state.tenMoi);
-        if (this.props.khuNhaReducer.updateSuccess) {
-            console.log(this.props.khuNhaReducer.updateSuccess);
-            this.setState({
-                tenKhuNha: this.state.tenMoi
-            });
-        }
     }
 
-    handleDelete = () => {
+    handleDeleteKhuNha = () => {
+
+        console.log(this.props.khuNhaId)
         this.props.xoaKhuNha(this.props.khuNhaId);
     }
 
@@ -60,7 +56,7 @@ class KhuNha extends Component {
                     <div className="mask">
                         <Button outline color="primary" onClick=""><b>Danh sách phòng</b></Button>
                         <Button outline color="primary" onClick={this.clickEdit}><b>Chỉnh sửa</b></Button>
-                        <Button outline color="primary" onClick=""><b>Xóa</b></Button>
+                        <Button outline color="primary" onClick={this.handleDeleteKhuNha}><b>Xóa</b></Button>
                     </div>
                 
                 </div>
@@ -78,7 +74,7 @@ class KhuNha extends Component {
                     </FormGroup>
                     <center>
                         <Button outline color="primary" onClick={this.clickEdit}>Thoát</Button>
-                        <Button type="submit" outline color="primary" onClick={this.handleChangeName()}>Chỉnh sửa</Button>
+                        <Button type="submit" outline color="primary" onClick={this.handleChangeName}>Chỉnh sửa</Button>
                     </center>
                 </Form>
             }
@@ -86,10 +82,3 @@ class KhuNha extends Component {
         );               
     }
 }
-
-const mapStatetoProps = state => ({
-    khuNhaReducer: state.khuNhaReducer
-});
-
-export default connect (mapStatetoProps, { suaKhuNha, xoaKhuNha }) (KhuNha);
-

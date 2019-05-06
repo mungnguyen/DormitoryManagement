@@ -1,13 +1,13 @@
 module.exports = function (app, db) {
     // CRUD
     app.get('/api/khuNha', function (req, res) {
-        db.khuNha.findAll({}).then(function (result) {
+        db.KhuNha.findAll({}).then(function (result) {
             res.json(result);
         });
     });
 
     app.get('/api/khuNha/:id', function(req, res) {
-        db.khuNha.findOne({ 
+        db.KhuNha.findOne({ 
             where:
                 { khuNhaId: req.params.id }
             }
@@ -17,7 +17,7 @@ module.exports = function (app, db) {
     }); 
 
     app.post('/api/themKhuNha', function (req, res) {
-        db.khuNha.create({
+        db.KhuNha.create({
             tenKhuNha: req.body.tenKhuNha
         }).then(function (result) {
                 res.json(result);
@@ -25,7 +25,7 @@ module.exports = function (app, db) {
     });
 
     app.put('/api/suakhuNha', function (req, res) {
-        db.khuNha.update({
+        db.KhuNha.update({
             tenKhuNha: req.body.tenKhuNha
         }, {
             where: {
@@ -38,7 +38,7 @@ module.exports = function (app, db) {
     });
 
     app.delete('/api/xoaKhuNha', function (req, res) {
-        db.khuNha.destroy({
+        db.KhuNha.destroy({
             where: {
                 khuNhaId: req.body.khuNhaId
             }

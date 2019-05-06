@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import KNList  from './KNList';
-import {hienThiCacKhuNha as hienThiCacKhuNha} from '../../../actions/khuNhaActions';
+import KhuNha from './khuNha';
+import {hienThiCacKhuNha, suaKhuNha, xoaKhuNha, themKhuNha} from '../../../actions/khuNhaActions';
+import ThemKhuNha from './themKhuNha';
 
 class DanhSachKhuNha extends Component {
     constructor(props) {
@@ -12,14 +13,52 @@ class DanhSachKhuNha extends Component {
     }
     
     componentDidMount = () => {
+        console.log("Ahihi");
         this.props.hienThiCacKhuNha();
     }
 
+    componentWillReceiveProps = (nextProps) => {
+        console.log(nextProps.khuNhaListReducer.KhuNhas);
+        this.setState({
+            KhuNhas: nextProps.khuNhaListReducer.KhuNhas
+        });
+    }
+
+
+    suaKhuNha = (khuNhaId, tenKhuNha) => {
+        this.props.suaKhuNha(khuNhaId, tenKhuNha);
+    }
+
+    xoaKhuNha = (khuNhaId) => {
+        this.props.xoaKhuNha(khuNhaId);
+        console.log(this.props.khuNhaListReducer.KhuNhas)
+        // this.setState({
+        //     KhuNhas: this.props.khuNhaListReducer.KhuNhas
+        // });
+    }
+
+    getAlert = () => {
+        alert('getAlert from Child');
+      }
+
+    themKhuNhaMoi = (tenKhuNha) => {
+        console.log(tenKhuNha);
+        this.props.themKhuNha(tenKhuNha)
+    }
     
 
     render() {
+        console.log(this.props.khuNhaListReducer.KhuNhas);
+        console.log(this.state.KhuNhas);
         return (
-         <KNList khunhas={this.props.khuNhaListReducer.KhuNhas} />
+                this.state.KhuNhas.map(khunha => 
+                <KhuNha 
+                   tenKhuNha={khunha.tenKhuNha}
+                   khuNhaId={khunha.khuNhaId}
+                   suaKhuNha={this.suaKhuNha} 
+                   xoaKhuNha={this.xoaKhuNha}
+                 />
+            )
         );
     }
 }
@@ -27,4 +66,4 @@ class DanhSachKhuNha extends Component {
 const mapStatetoProps = state => ({
     khuNhaListReducer: state.khuNhaListReducer
 })
-export default connect(mapStatetoProps, {hienThiCacKhuNha} )(DanhSachKhuNha)
+export default connect(mapStatetoProps, {hienThiCacKhuNha, suaKhuNha, xoaKhuNha, themKhuNha})(DanhSachKhuNha)

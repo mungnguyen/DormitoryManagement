@@ -44,6 +44,18 @@ export const themKhuNha = (tenKhuNha) => dispatch => {
     });
 }
 
+export const suaKhuNhaThanhCong = (khuNhaId, tenKhuNha) => {
+    console.log("SuaThanhCong");
+    return{
+        type: SUA_KHU_NHA,
+        payload: {
+            khuNhaId: khuNhaId,
+            tenKhuNha: tenKhuNha
+        }
+    }
+} 
+
+
 export const suaKhuNha = (khuNhaId, tenKhuNha) => dispatch => {
     axios.put('/api/suaKhuNha', {
         khuNhaId: khuNhaId,
@@ -51,25 +63,29 @@ export const suaKhuNha = (khuNhaId, tenKhuNha) => dispatch => {
     },
         console.log("Sua khu nha")
     ).then(
-        res => dispatch({
-            type: SUA_KHU_NHA,
-            payload: res.data
-        })
+        () => dispatch(suaKhuNhaThanhCong(khuNhaId, tenKhuNha))
     ).catch(function(error) {
         console.log(error.response);
     });
 }
 
+
+export const xoaKhuNhaThanhCong = (khuNhaId) => {
+    console.log("xoaThanhCong");
+    return {
+        type: XOA_KHU_NHA,
+        payload: khuNhaId
+    }
+}
+
 export const xoaKhuNha = (khuNhaId) => dispatch => {
+    console.log(khuNhaId);
     axios.delete('/api/xoaKhuNha', {
-        khuNhaId: khuNhaId
+        data: {khuNhaId: khuNhaId}
     },
         console.log("Xoa khu nha")
     ).then(
-        res => dispatch({
-            type: XOA_KHU_NHA,
-            payload: res.data
-        })
+        () => dispatch(hienThiCacKhuNha())
     ).catch(function(error) {
         console.log(error.response);
     });
