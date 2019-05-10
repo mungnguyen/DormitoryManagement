@@ -2,10 +2,11 @@ import { API_CALLING, LOGIN_ADMIN, SUA_THONG_TIN_ADMIN } from '../actions/types'
 
 const initState = {
     callapidone: false,
-    acc: {} 
-}
+    success: false,
+    acc: {}
+};
 
-export const adminReducer = function(state = initState, action) {
+export default function adminReducer(state=initState, action) {
     switch(action.type){
         case API_CALLING: {
             return {
@@ -18,6 +19,7 @@ export const adminReducer = function(state = initState, action) {
             console.log("LOGIN_AMIN_OK");
             return {
                 ...state,
+                success: action.payload.success,
                 acc: action.payload.data,
                 callapidone: true
             }
@@ -30,5 +32,7 @@ export const adminReducer = function(state = initState, action) {
                 callapidone: true
             }
         }
+
+        default: return state
     }
 }

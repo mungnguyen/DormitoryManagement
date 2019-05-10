@@ -22,7 +22,7 @@ export const suaThongTinAdmin = (tenAdmin, matKhauAdmin) => dispatch => {
     },
         console.log("SUA_THONG_TIN_ADMIN")
     )
-    axios.post('/api/admin/login', {
+    axios.post('/api/admin/suathongtin', {
         tenAdmin: tenAdmin,
         matKhauAdmin: matKhauAdmin
     }).then(response => dispatch({
