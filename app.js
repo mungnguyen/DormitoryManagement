@@ -4,8 +4,10 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var session = require('express-session');// to use passport
 
-var apiKhuNha = require('./routes/apiKhuNha');
+var api = require('./routes/api');
 var db = require('./models');
 
 var routes = require('./routes/index');
@@ -13,6 +15,7 @@ var users = require('./routes/users');
 
 var app = express();
 
+require('./middleware/passport')(passport);
 
 app.use(favicon());
 app.use(logger('dev'));
@@ -21,10 +24,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// For Passport
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
 app.use('/', routes);
 app.use('/users', users);
 
-apiKhuNha(app, db);
+api(app);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

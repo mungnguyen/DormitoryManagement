@@ -1,4 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
+    var bcrypt = require('bcrypt-nodejs');
     var Admin = sequelize.define('Admin', {
         adminId: {
            type: DataTypes.INTEGER,
