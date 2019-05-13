@@ -9,8 +9,10 @@ module.exports = function(app) {
 
 //Admin
   //Usage: Login - arguments: tenAdmin, matKhauAdmin
-  app.post('/api/admin/login', signUpVerify.checkDuplicateAdminName, Admin.login);
+  app.post('/api/admin/login', Admin.login);
   app.put('/api/admin/suathongtin/:adminId', passport.authenticate('jwt-admin', {session: false}), Admin.suaThongTinAdmin);
+  app.get('/api/check', passport.authenticate('jwt-admin', {session: false}), Admin.check);
+  app.put('api/admin/doimatkhau', passport.authenticate('jwt-admin', {session: false}), Admin.doiMatKhau);
 
 //SinhVien
   //Usage: SignUp - arguments: tenSinhVien, emailSinhVien, matKhauSinhVien, gioiTinh

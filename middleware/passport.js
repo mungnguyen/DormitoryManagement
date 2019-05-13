@@ -24,11 +24,11 @@ module.exports = function(passport){
     }));
 
     passport.use('jwt-admin', new Strategy(opts, function(jwt_payload, done) {
-        db.SinhVien.findOne({
+        db.Admin.findOne({
             where: {
               adminId: jwt_payload.id
             }
-          }).then(function(admin) {
+          }).then(user_admin => {
             if (admin) {
                 return done(null, admin);
             } else {

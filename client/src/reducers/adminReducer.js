@@ -1,9 +1,9 @@
-import { API_CALLING, LOGIN_ADMIN, SUA_THONG_TIN_ADMIN } from '../actions/types';
+import { API_CALLING, LOGIN_ADMIN, SUA_THONG_TIN_ADMIN, DOI_MAT_KHAU } from '../actions/types';
 
 const initState = {
     callapidone: false,
-    success: false,
-    acc: {}
+    acc: {},
+    doiMatKhau: {}
 };
 
 export default function adminReducer(state=initState, action) {
@@ -19,8 +19,7 @@ export default function adminReducer(state=initState, action) {
             console.log("LOGIN_AMIN_OK");
             return {
                 ...state,
-                success: action.payload.success,
-                acc: action.payload.data,
+                acc: action.payload,
                 callapidone: true
             }
         }
@@ -30,6 +29,15 @@ export default function adminReducer(state=initState, action) {
             return {
                 ...state,
                 callapidone: true
+            }
+        }
+
+        case DOI_MAT_KHAU: {
+            console("DOI_MAT_KHAU_OK");
+            return {
+                ...state,
+                callapidone: true,
+                doiMatKhau: action.payload
             }
         }
 

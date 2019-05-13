@@ -2,31 +2,6 @@
   color: transparent;
 } */
 
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
-@font-face {
-  font-family: Poppins-Regular;
-  src: url('./fonts/poppins/Poppins-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Medium;
-  src: url('./fonts/poppins/Poppins-Medium.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Bold;
-  src: url('./fonts/poppins/Poppins-Bold.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-SemiBold;
-  src: url('./fonts/poppins/Poppins-SemiBold.ttf'); 
-}
-
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
@@ -38,13 +13,13 @@
 
 body, html {
 	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+	font-family: sans-serif;
 }
 
 /*---------------------------------------------*/
 a {
 	font-family: Poppins-Regular;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
@@ -70,7 +45,7 @@ h1,h2,h3,h4,h5,h6 {
 
 p {
 	font-family: Poppins-Regular;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
@@ -86,6 +61,11 @@ ul, li {
 input {
 	outline: none;
 	border: none;
+}
+
+input:focus {
+  border: none;
+  outline: none;
 }
 
 input[type="number"] {
@@ -152,8 +132,7 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-  font-family: Poppins-Regular;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.4;
   color: #999999;
 }
@@ -208,14 +187,14 @@ iframe {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-image: url('./bg-01.jpg');
+  background-image: url("./bg-01.jpg");
 
   padding: 70px 15px 74px 15px;
 }
 
 .login100-form-title-1 {
   font-family: Poppins-Bold;
-  font-size: 30px;
+  font-size: 40px;
   color: #fff;
   text-transform: uppercase;
   line-height: 1.2;
@@ -262,7 +241,7 @@ iframe {
 
 .label-input100 {
   font-family: Poppins-Regular;
-  font-size: 15px;
+  font-size: 16px;
   color: #808080;
   line-height: 1.2;
   text-align: right;
@@ -280,6 +259,8 @@ iframe {
   font-size: 15px;
   color: #555555;
   line-height: 1.2;
+  outline: none;
+  border: none;
 
   display: block;
   width: 100%;
@@ -338,7 +319,7 @@ input.input100 {
 
 .label-checkbox100 {
   font-family: Poppins-Regular;
-  font-size: 13px;
+  font-size: 15px;
   color: #999999;
   line-height: 1.4;
 
@@ -351,7 +332,7 @@ input.input100 {
 .label-checkbox100::before {
   content: "\f00c";
   font-family: FontAwesome;
-  font-size: 13px;
+  font-size: 16px;
   color: transparent;
 
   display: -webkit-box;
@@ -442,7 +423,7 @@ input.input100 {
     top: unset;
     left: unset;
     width: 100%;
-    padding: 0 5px;
+    padding: 0;
   }
 }
 

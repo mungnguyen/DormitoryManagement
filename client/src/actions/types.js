@@ -4,6 +4,7 @@ export const API_CALLING = "API_CALLING"
 //Login-Admin
 export const LOGIN_ADMIN = "LOGIN_ADMIN"
 export const SUA_THONG_TIN_ADMIN = "SUA_THONG_TIN_ADMIN"
+export const DOI_MAT_KHAU = "DOI_MAT_KHAU"
 
 //Khu Nha
 export const HIEN_THI_CAC_KHU_NHA = "HIEN_THI_CAC_KHU_NHA";
