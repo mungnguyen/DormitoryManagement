@@ -7,7 +7,7 @@ checkDuplicateStudentEmail = (req, res, next) => {
         } 
       }).then(function(result) {
         if(result){
-          res.json({
+          res.status(401).json({
             success: false,
             status: "Email đã tồn tại!"});
           return;

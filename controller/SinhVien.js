@@ -4,7 +4,7 @@ bcrypt = require('bcrypt-nodejs');
 config = require('../config/config');
 jwt = require('jsonwebtoken');
 
-//Dang nhap
+//Dang ki
 const signUp = function(req, res){
   // Save SinhVien to Database
   console.log("Processing func -> SignUp");
@@ -15,8 +15,12 @@ const signUp = function(req, res){
       matKhauSinhVien: bcrypt.hashSync(req.body.matKhauSinhVien, bcrypt.genSaltSync(8), null),
       gioiTinh: req.body.gioiTinh
     }).then(function(sinhVien){
+      var token = jwt.sign({ id: sinhVien.sinhVienId }, config.secret, {
+        expiresIn: 86400 // expires in 24 hours
+      });
       res.json({
           success: true,
+          token: token,
           data: sinhVien
       })
   })
@@ -35,15 +39,15 @@ const login = (req, res) => {
     }
   }).then(sinhVien => {
     if (!sinhVien) {
-      return res.status(404).json({
+      return res.status(401).json({
         success: false,
         status: "Email không tồn tại"
       });
     }
  
     var passwordIsValid = bcrypt.compareSync(req.body.matKhauSinhVien, sinhVien.matKhauSinhVien);
-    if (!passwordIsValid && req.body.matKhauSinhVien == "12345") {
-      return res.status(401).json({ 
+    if (!passwordIsValid) {
+      return res.status(402).json({ 
         success: false,
         token: null,
         status: "Mật khẩu không chính xác" });
