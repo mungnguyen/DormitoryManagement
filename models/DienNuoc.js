@@ -9,15 +9,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.DATE,
             allowNull: false
         },
-        phongId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            foreignKey: true,
-            references: {
-                model: 'Phongs',
-                key: 'phongId'
-            }
-        },
         chiSoCu: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -26,6 +17,15 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false
         },
+        giaDien: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        tinhTrangThanhToan: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "Chưa thanh toán"
+        }
     },
     {
         timestamps: false

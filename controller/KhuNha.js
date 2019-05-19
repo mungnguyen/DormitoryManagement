@@ -35,7 +35,7 @@ var suaThongTinKhuNha = function (req, res) {
         SDT: req.body.SDT
     }, {
         where: {
-            khuNhaId: req.body.khuNhaId
+            khuNhaId: req.params.khuNhaId
         }
     }).then(function (result) {
           res.json(result
@@ -46,7 +46,7 @@ var suaThongTinKhuNha = function (req, res) {
 var xoaKhuNha = function (req, res) {
     db.KhuNha.destroy({
         where: {
-            khuNhaId: req.body.khuNhaId
+            khuNhaId: req.params.khuNhaId
         }
     }).then(function (result) {
         res.json(result);

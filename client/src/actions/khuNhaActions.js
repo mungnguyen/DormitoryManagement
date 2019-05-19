@@ -1,10 +1,14 @@
 import axios from 'axios';
-import { HIEN_THI_CAC_KHU_NHA, LAY_KHU_NHA_ID, THEM_KHU_NHA, SUA_KHU_NHA, XOA_KHU_NHA} from './types';
+import { HIEN_THI_CAC_KHU_NHA, LAY_KHU_NHA_ID, THEM_KHU_NHA, SUA_KHU_NHA, XOA_KHU_NHA, API_CALLING } from './types';
 
 export const hienThiCacKhuNha = () => dispatch => {
-    axios.get('/api/khuNha',
+    dispatch({
+        type: API_CALLING
+    },
         console.log("Hien thi cac khu nha trong ki tuc xa")
-    ).then(
+    )
+    axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('token');
+    axios.get('/api/admin/hienthicackhunha').then(
         res => dispatch(
             {
                 type: HIEN_THI_CAC_KHU_NHA,
@@ -15,10 +19,14 @@ export const hienThiCacKhuNha = () => dispatch => {
     });
 }
 
-export const layKhuNhaId = () => dispatch => {
-    axios.get('/api/khuNha/:id',
+export const layKhuNhaId = (id) => dispatch => {
+    dispatch({
+        type: API_CALLING
+    },
         console.log("Lay khu nha theo id")
-    ).then(
+    )
+    axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('token');
+    axios.get('/api/admin/hienthikhuNhatheoid/' + id).then(
         res => dispatch(
             {
                 type: LAY_KHU_NHA_ID,
@@ -29,64 +37,62 @@ export const layKhuNhaId = () => dispatch => {
     });
 }
 
-export const themKhuNha = (tenKhuNha) => dispatch => {
-    axios.post('/api/themKhuNha', {
-        tenKhuNha: tenKhuNha
-    }, 
-        console.log("Them Khu Nha")
-    ).then(
+export const themKhuNha = (tenKhuNha, diaChi, quanLyKhuNha, SDT) => dispatch => {
+    dispatch({
+        type: API_CALLING
+    },
+        console.log("Lay khu nha theo id")
+    )
+    axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('token');
+    axios.post('/api/admin/themkhunha', {
+        tenKhuNha: tenKhuNha,
+        diaChi: diaChi,
+        quanLyKhuNha: quanLyKhuNha,
+        SDT: SDT
+    }).then(
         res => dispatch({
             type: THEM_KHU_NHA,
             payload: res.data
         })
-    ).catch(function(error) {
+    ).catch(function (error) {
         console.log(error.response);
     });
 }
 
-export const suaKhuNhaThanhCong = (khuNhaId, tenKhuNha) => {
-    console.log("SuaThanhCong");
-    return{
-        type: SUA_KHU_NHA,
-        payload: {
-            khuNhaId: khuNhaId,
-            tenKhuNha: tenKhuNha
-        }
-    }
-} 
 
-
-export const suaKhuNha = (khuNhaId, tenKhuNha) => dispatch => {
-    axios.put('/api/suaKhuNha', {
-        khuNhaId: khuNhaId,
-        tenKhuNha: tenKhuNha
+export const suaKhuNha = (khuNhaId, tenKhuNha, diaChi, quanLyKhuNha, SDT) => dispatch => {
+    dispatch({
+        type: API_CALLING
     },
         console.log("Sua khu nha")
-    ).then(
-        () => dispatch(suaKhuNhaThanhCong(khuNhaId, tenKhuNha))
-    ).catch(function(error) {
-        console.log(error.response);
-    });
-}
-
-
-export const xoaKhuNhaThanhCong = (khuNhaId) => {
-    console.log("xoaThanhCong");
-    return {
-        type: XOA_KHU_NHA,
-        payload: khuNhaId
-    }
+    )
+    axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('token');
+    axios.put('/api/admin/suakhunha/' + khuNhaId, {
+        tenKhuNha: tenKhuNha,
+        diaChi: diaChi,
+        quanLyKhuNha: quanLyKhuNha,
+        SDT: SDT
+    }).then(
+        res => dispatch({
+            type: SUA_KHU_NHA,
+            payload: res.data
+        })
+    )
 }
 
 export const xoaKhuNha = (khuNhaId) => dispatch => {
-    console.log(khuNhaId);
-    axios.delete('/api/xoaKhuNha', {
-        data: {khuNhaId: khuNhaId}
+    dispatch({
+        type: API_CALLING
     },
-        console.log("Xoa khu nha")
-    ).then(
-        () => dispatch(hienThiCacKhuNha())
-    ).catch(function(error) {
+        console.log("Xoa khu")
+    )
+    axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('token');
+    axios.delete('/api/admin/xoakhunha/' + khuNhaId).then(
+        res => dispatch({
+            type: XOA_KHU_NHA,
+            payload: res.data
+        })
+    ).catch(function (error) {
         console.log(error.response);
     });
 }

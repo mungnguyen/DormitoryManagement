@@ -5,24 +5,6 @@ module.exports = function(sequelize, DataTypes) {
            primaryKey: true,
            autoIncrement: true 
         },
-        thietBiId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            foreignKey: true,
-            references: {
-                model: "ThietBis",
-                key: "ThietBiId"
-            }
-        },
-        phongId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            foreignKey: true,
-            references: {
-                model: 'Phongs',
-                key: 'phongId'
-            }
-        },
         soLuongHienCo: {
             type: DataTypes.INTEGER,
             allowNull: false,

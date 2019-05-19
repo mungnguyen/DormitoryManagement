@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 import LoginAdmin from './components/admin/loginPage';
 import AdminHome from './components/admin/adminHome';
-import ChangePassPage from './components/admin/changePassPage'
-
+import QuanLyPhong from './components/admin/quanLyPhongPage';
 
 const PrivateRouteAdmin = ({component: Component, ...rest})=>(
 <Route {...rest}
@@ -21,7 +20,7 @@ class App extends Component {
        <Switch>
          <Route exact path='/admin' component={LoginAdmin}/>
          <PrivateRouteAdmin exact path='/admin/home' component={AdminHome}/>
-         <PrivateRouteAdmin exact path='/admin/thay-doi-mat-khau' component={ChangePassPage}/>
+         <PrivateRouteAdmin exact path='/admin/quan-ly-phong' component={QuanLyPhong}/>
          {/*
          <Route exact path='/contact' component={contactPage}/>
          <PrivateRoute exact path='/user' component={userInfo}/>

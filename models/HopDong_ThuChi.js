@@ -5,28 +5,15 @@ module.exports = function(sequelize, DataTypes) {
            primaryKey: true,
            autoIncrement: true 
         },
-        hopDongId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            foreignKey: true,
-            references: {
-                model: 'HopDongs',
-                key: 'hopDongId'
-            }
-        },
-        thuChiId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            foreignKey: true,
-            references: {
-                model: 'ThuChis',
-                key: 'thuChiId'
-            }
-        },
         soTienDaDong: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
+        tinhTrangThanhToan: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "Chưa thanh toán"
+        }
     },
     {
         timestamps: false

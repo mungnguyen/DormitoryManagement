@@ -18,19 +18,20 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: 8
         },
-        tinhTrangPhong: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        khuNhaId:{
+        soSinhVien: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            foreignKey: true,
-            references: {
-                model: 'KhuNhas',
-                key: 'khuNhaId'
-            }
+            defaultValue: 0
         },
+        // khuNhaId:{
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     foreignKey: true,
+        //     references: {
+        //         model: 'KhuNhas',
+        //         key: 'khuNhaId'
+        //     }
+        // },
     },
     {
         timestamps: false

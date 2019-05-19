@@ -52,7 +52,10 @@ const login = (req, res) => {
     });
   }
 
+//doi mat khau
 const doiMatKhau = (req, res) => {
+  console.log("Doi-mat-khau");
+
   db.Admin.findOne({
     where: {
       adminId: req.user.adminId
@@ -61,7 +64,7 @@ const doiMatKhau = (req, res) => {
     var passwordIsValid = false;
 
     if( admin.matKhauAdmin == "12345" ) {
-      passwordIsValid = req.matKhauCu == "12345" ? true : false
+      passwordIsValid = (req.body.matKhauCu == "12345") ? true : false
     } else {
       passwordIsValid = bcrypt.compareSync(req.body.matKhauCu, admin.matKhauAdmin);
     }
@@ -74,7 +77,7 @@ const doiMatKhau = (req, res) => {
     } 
     else {
       db.Admin.update({
-        matKhauAdmin: req.body.matKhauMoi
+        matKhauAdmin: bcrypt.hashSync(req.body.matKhauMoi, bcrypt.genSaltSync(8), null)
       }, {
         where: {
           adminId: admin.adminId
@@ -105,17 +108,16 @@ const check = ( req, res ) => {
 
 const suaThongTinAdmin = ( req, res ) => {
     db.Admin.update({
-        tenAdmin: req.body.tenAdmin,
-        matKhauAdmin: bcrypt.hashSync(req.body.matKhauAdmin, bcrypt.genSaltSync(8), null)
+        tenAdmin: req.body.tenAdmin
     },{
         where: {
             adminId: req.user.adminId
         }
     }).then(admin => {
-        return {
+        return res.json({
             success: true,
             data: admin
-        }
+        })
     })
 } 
 

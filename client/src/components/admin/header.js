@@ -6,10 +6,10 @@ export default class Header extends Component {
     render() {
         return (
             <div className="row header">
-                <div className="col-md-3" style={{ marginTop: "10px"}}>
+                <div className="col-md-3" style={{ marginTop: "5px"}}>
                     <center>
                         <img src={logoAdmin} className="logoAdmin" alt="ADMIN" />
-                        <b style={{color: "white"}}>ADMIN</b>
+                        <b className="content"> ADMIN</b>
                     </center>
                 </div>
                 
@@ -24,14 +24,13 @@ export default class Header extends Component {
                         </div>
 
                         <div className="col-md-1">
-                        <a href="#" className="search_icon"><i className="fas fa-search" style={{ cursor: "pointer", fontSize: "28px"}}></i></a>
+                        <a href="#" className="search_icon"><i className="fas fa-search" style={{ cursor: "pointer", fontSize: "20px"}}></i></a>
                         </div>
                     </div>
                 </div>
 
                 <div className="col-md-3">
-                <i className="fas fa-user-tie" 
-                    style={{ cursor: "pointer", fontSize: "28px", color: "white", marginTop: "20px", marginLeft: "150px"}} ></i>
+                <i className="fas fa-user-tie user-icon"></i>
                 </div>
             </div>
         );

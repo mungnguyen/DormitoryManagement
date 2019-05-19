@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
 import khuNhaListReducer from './khuNhaListReducer';
-import khuNhaReducer from './khuNhaReducer';
 import adminReducer from './adminReducer';
+import phongReducer from './phongReducer';
 
 const reducer = combineReducers({
-    khuNhaListReducer: khuNhaListReducer,
-    khuNhaReducer: khuNhaReducer,
-    admin: adminReducer
+    khuNha: khuNhaListReducer,
+    admin: adminReducer,
+    phong: phongReducer
 })
 export default reducer

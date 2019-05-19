@@ -28,7 +28,7 @@ module.exports = function(passport){
             where: {
               adminId: jwt_payload.id
             }
-          }).then(user_admin => {
+          }).then(admin => {
             if (admin) {
                 return done(null, admin);
             } else {

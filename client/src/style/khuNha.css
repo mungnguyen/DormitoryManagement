@@ -1,21 +1,49 @@
-.khuNha_item {
-    margin-top: 20px;
+.table {
+    background-color: white;
+    box-shadow: 2em;
+    margin-top: 2em; 
+    margin-left: 1em;
+    margin-right: 1em;
+    width: 65em;
+    font-size: 14px;
+    border: 1px solid black;
 }
 
-.khuNhaImage {
-    width: 150px;
-    height: 150px;
+th, td, tr {
+    padding: 0;
+    border: 1px solid black;
 }
 
-.tenKhuNha {
-    margin-top: 10px;
-    color: rgb(50, 128, 245);
+th {
+    background-color: rgb(40, 40, 241, 0.8);
+    color: white;
+    text-align: center;
 }
 
-.themKhuNha{
-    width: 150px;
-    height: 150px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    color: rgb(50, 128, 245);
+tr {
+    height: 5px;
+}
+
+tr:hover {
+    color: white ;
+    background-color: rgba(111, 138, 236, 0.8);
+}
+
+tr:nth-child(even) {background-color: rgb(163, 176, 221, 0.8);}
+
+.add {
+    right: 10px;
+    background-color: rgb(70, 179, 241);
+    margin-top: 1em;
+    margin-left: 48.5em;
+    margin-bottom: 0;
+    border-radius: 0; 
+}
+
+.add:hover {
+    background-color:  rgb(70, 179, 241, 0.8);
+}
+
+.khu-nha {
+    clear: both;
 }

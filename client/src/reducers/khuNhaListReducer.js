@@ -1,43 +1,54 @@
-import { HIEN_THI_CAC_KHU_NHA, LAY_KHU_NHA_ID, THEM_KHU_NHA, SUA_KHU_NHA, XOA_KHU_NHA} from '../actions/types';
+import { HIEN_THI_CAC_KHU_NHA, LAY_KHU_NHA_ID, THEM_KHU_NHA, SUA_KHU_NHA, XOA_KHU_NHA, API_CALLING } from '../actions/types';
 
 const initialState = {
-  KhuNhas: []
+  KhuNhas: [],
+  callapidone: false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case API_CALLING: {
+      return {
+          ...state,
+          callapidone: false
+      }
+    }
+
     case HIEN_THI_CAC_KHU_NHA: {
       return {
         ...state,
-        KhuNhas: action.payload
+        KhuNhas: action.payload,
+        callapidone: true
       };
     }
 
     case LAY_KHU_NHA_ID: {
         const khuNha = action.payload
-        return {...state, khuNha};
+        return {
+          ...state,
+          khuNha: khuNha,
+          callapidone: true
+        };
     }
 
     case THEM_KHU_NHA: {
-      const khuNha = action.payload;
       return {
         ...state,
-        ...khuNha
+        callapidone: true
       };
     }
 
     case SUA_KHU_NHA: {
-      // const khuNha = action.payload
-      const khuNhas = state.khuNhas.filter(khuNha => khuNha.khuNhaId != action.payload.khuNhaId);
       return {
-        ...state, khuNhas
+        ...state,
+        callapidone: true
       }
     }
 
     case XOA_KHU_NHA: {
-      const khuNhas = state.khuNhas.filter(khuNha => khuNha.khuNhaId != action.payload);
       return {
-        ...state, khuNhas
+        ...state, 
+        callapidone: true
       }
     }
 

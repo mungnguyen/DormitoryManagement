@@ -33,7 +33,7 @@ export default function adminReducer(state=initState, action) {
         }
 
         case DOI_MAT_KHAU: {
-            console("DOI_MAT_KHAU_OK");
+            console.log("DOI_MAT_KHAU_OK");
             return {
                 ...state,
                 callapidone: true,

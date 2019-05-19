@@ -5,24 +5,6 @@ module.exports = function(sequelize, DataTypes) {
            primaryKey: true,
            autoIncrement: true 
         },
-        sinhVienId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            foreignKey: true,
-            references: {
-                model: 'SinhViens',
-                key: 'sinhVienId'
-            }
-        },
-        phongId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            foreignKey: true,
-            references: {
-                model: 'Phongs',
-                key: 'phongId'
-            }
-        },
         ngayBatDau: {
             type: DataTypes.DATE,
             allowNull: false
@@ -31,6 +13,11 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.DATE,
             allowNull: false
         },
+        tinhTrangThanhToan: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "Chưa thanh toán"
+        }
     },
     {
         timestamps: false

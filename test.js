@@ -1,11 +1,10 @@
-var bcrypt = require('bcrypt-nodejs');
+var x = [
+    {a:"1" }, 
+    {b:"2" }
+]
 
-var x = '10';
+x.forEach(e => {
+    e = Object.assign(e, {c:"3"})
+})
 
-var y = bcrypt.hashSync(x, bcrypt.genSaltSync(8), null);
-
-var z = '10';
-
-var t = bcrypt.compareSync(z, y);
-
-console.log(t);
+console.log(x);

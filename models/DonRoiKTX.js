@@ -5,15 +5,6 @@ module.exports = function(sequelize, DataTypes) {
            primaryKey: true,
            autoIncrement: true 
         },
-        sinhVienId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            foreignKey: true,
-            references: {
-                model: 'SinhViens',
-                key: 'sinhVienId'
-            }
-        },
         ngayVietDon: {
             type: DataTypes.DATE,
             allowNull: false
