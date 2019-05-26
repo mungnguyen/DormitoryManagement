@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
-import { renameSync } from 'fs';
+import MenuSinhVien from './menu';
+import Header from './header';
+import DanhSachPhongTrong from './quanLyDangKi/danhSachPhongTrong';
+
 
 export default class SinhVienHome extends Component {
     render() {
-        return(
-            <h1>Welcome to HUST Dormitory</h1>
+        return (
+            <div className="row">
+                <MenuSinhVien />
+                <div className="col-md-2" style={{ clear: "both"}}>
+                </div>
+
+                <div className="col-md-10" style={{ padding: "0"}}>
+                    <Header />
+                    <hr />
+                    <DanhSachPhongTrong />
+                </div>
+
+            </div>
         )
     }
 }

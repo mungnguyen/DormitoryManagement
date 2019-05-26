@@ -13,6 +13,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.DATE,
             allowNull: false
         },
+        tongSoTien: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         tinhTrangThanhToan: {
             type: DataTypes.STRING,
             allowNull: false,

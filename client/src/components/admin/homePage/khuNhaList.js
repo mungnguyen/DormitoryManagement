@@ -23,6 +23,12 @@ class KhuNhaList extends Component {
         this.props.hienThiCacKhuNha();
     }
 
+    componentWillReceiveProps = (nextProps) => {
+        if(nextProps.khuNha.callapidone && nextProps.khuNha.callapidone != this.props.khuNha.callapidone) {
+            this.props.hienThiCacKhuNha();
+        }
+    }
+
     openModal = () => {
         if ( !this.state.openAddModal )
             this.setState({
@@ -80,13 +86,11 @@ class KhuNhaList extends Component {
         if(this.state.themMoi) {
             if(this.state.tenKhuNha && this.state.diaChi && this.state.quanLyKhuNha && this.state.SDT) {
                 this.props.themKhuNha(this.state.tenKhuNha, this.state.diaChi, this.state.quanLyKhuNha, this.state.SDT);
-                this.props.hienThiCacKhuNha();
                 this.openModal();
             }
         } else {
             if(this.state.id && this.state.tenKhuNha && this.state.diaChi && this.state.quanLyKhuNha && this.state.SDT) {
                 this.props.suaKhuNha(this.state.id, this.state.tenKhuNha, this.state.diaChi, this.state.quanLyKhuNha, this.state.SDT);
-                this.props.hienThiCacKhuNha();
                 this.openModal();
             }
         }
@@ -101,7 +105,6 @@ class KhuNhaList extends Component {
     clickXoaKhuNha = () => {
         if(this.state.idDel) {
             this.props.xoaKhuNha(this.state.idDel);
-            this.props.hienThiCacKhuNha();
             this.setState({
                 idDel: ""
             });

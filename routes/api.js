@@ -7,7 +7,9 @@ module.exports = function(app) {
   const SinhVien = require('../controller/SinhVien');
   const Admin = require('../controller/Admin');
   const KhuNha = require('../controller/KhuNha');
-  const Phong = require('../controller/Phong')
+  const Phong = require('../controller/Phong');
+  const DonDangKi = require('../controller/DonDangKi');
+  const HopDong = require('../controller/HopDong');
 
 //Admin
   //Usage: Login - arguments: tenAdmin, matKhauAdmin
@@ -16,19 +18,29 @@ module.exports = function(app) {
   app.get('/api/check', passport.authenticate('jwt-admin', {session: false}), Admin.check);
   app.put('/api/admin/doimatkhau', passport.authenticate('jwt-admin', {session: false}), Admin.doiMatKhau);
 
-//CRUD Khu Nha
-  app.get('/api/admin/hienthicackhunha', passport.authenticate('jwt-admin', {session: false}), KhuNha.hienThiCacKhuNha);
+  //CRUD Khu Nha
+  app.get('/api/hienthicackhunha', KhuNha.hienThiCacKhuNha);
   app.get('/api/admin/hienthikhunhatheoid/:khuNhaId', passport.authenticate('jwt-admin', {session: false}), KhuNha.timKhuNhaTheoId);
   app.post('/api/admin/themkhunha', passport.authenticate('jwt-admin', {session: false}), KhuNha.themKhuNha);
   app.put('/api/admin/suakhunha/:khuNhaId', passport.authenticate('jwt-admin', {session: false}), KhuNha.suaThongTinKhuNha);
   app.delete('/api/admin/xoakhunha/:khuNhaId', passport.authenticate('jwt-admin', {session: false}), KhuNha.xoaKhuNha);
 
-// CRUD Phong
-  app.get('/api/admin/hienthicacphong', passport.authenticate('jwt-admin', {session: false}), Phong.hienThiCacPhong);
+  // CRUD Phong
+  app.get('/api/hienthicacphong', Phong.hienThiCacPhong);
   app.get('/api/admin/hienthiphongtheoid/:phongId', passport.authenticate('jwt-admin', {session: false}), Phong.timPhongTheoId);
   app.post('/api/admin/themphong', passport.authenticate('jwt-admin', {session: false}), Phong.themPhong);
   app.put('/api/admin/suaphong/:phongId', passport.authenticate('jwt-admin', {session: false}), Phong.suaThongTinPhong);
   app.delete('/api/admin/xoaphong/:phongId', passport.authenticate('jwt-admin', {session: false}), Phong.xoaPhong);
+
+  //Don dang ki
+  app.get('/api/admin/hienthicacdondangki',passport.authenticate('jwt-admin', {session: false}), DonDangKi.hienThiCacDonDangKi);
+  app.put('/api/admin/thaydoitinhtrangdon/:donDangKiId', passport.authenticate('jwt-admin', {session: false}), DonDangKi.suaThongTinDonDangKi);
+  
+  //Hop Dong
+  app.get('/api/admin/hienthicachopdong', passport.authenticate('jwt-admin', {session: false}), HopDong.hienThiCacHopDong);
+  app.post('/api/admin/taohopdong', passport.authenticate('jwt-admin', {session: false}), HopDong.themHopDong);
+  app.put('/api/admin/thaydoitrangthaihopdong/:hopDongId', passport.authenticate('jwt-admin', {session: false}), HopDong.suaThongTinHopDong);
+
 
 //SinhVien
   //Usage: SignUp - arguments: tenSinhVien, emailSinhVien, matKhauSinhVien, gioiTinh
@@ -40,4 +52,9 @@ module.exports = function(app) {
   //Useage: Sua thong tin ca nhan - arguments: 
       //tenSinhVien, emailSinhVien, matKhauSinhVien, gioiTinh, ngayVao, ngayRa, mucUuTien
     app.put('/api/sinhvien/suathongtin/:sinhVienId', passport.authenticate('jwt-sv', {session:false}), SinhVien.suaThongTinSinhVien);
+
+  //Dang ki phong
+  app.get('/api/sinhvien/hienthidondangkisinhvien', passport.authenticate('jwt-sinhvien', {session: false}), DonDangKi.timDonDangKiCuaSinhVien);
+  app.get('/api/sinhvien/kiemtrasinhvienthuocktx', passport.authenticate('jwt-sinhvien', {session: false}), HopDong.kiemTraSinhVienThuocKTX);
+  app.post('/api/sinhvien/themdondangki', passport.authenticate('jwt-sinhvien', {session: false}), DonDangKi.themDonDangKi);
 }

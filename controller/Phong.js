@@ -42,9 +42,10 @@ var themPhong = function (req, res) {
 
 var suaThongTinPhong = function (req, res) {
     db.Phong.update({
-        tenPhong: req.body.Phong,
+        tenPhong: req.body.tenPhong,
         loaiPhong: req.body.loaiPhong,
         soSinhVienMax: req.body.soSinhVienMax,
+        soSinhVien: req.body.soSinhVien,
         khuNhaId: req.body.khuNhaId
     }, {
         where: {

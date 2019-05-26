@@ -27,8 +27,18 @@ class LoginSinhVien extends Component {
 
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.sinhVien.callapidone) {
-            if (nextProps.sinhVien.signUpSuccess || nextProps.sinhVien.loginSucces) {
+            if (nextProps.sinhVien.signUpSuccess) {
                 console.log("SignUp Success");
+                localStorage.setItem("signined", nextProps.sinhVien.acc.success)
+                localStorage.setItem("userId", nextProps.sinhVien.acc.data.sinhVienId);
+                localStorage.setItem("email", nextProps.sinhVien.acc.data.emailSinhVien);
+                localStorage.setItem("tenSinhVien", nextProps.sinhVien.acc.data.tenSinhVien);
+                localStorage.setItem("token", nextProps.sinhVien.acc.token);
+                localStorage.setItem("gioiTinh", nextProps.sinhVien.acc.data.gioiTinh);
+                localStorage.setItem("role", "sinhvien");
+                this.props.history.push('/home');
+            } else if (nextProps.sinhVien.loginSuccess){
+                console.log("Login Success");
                 localStorage.setItem("signined", nextProps.sinhVien.acc.success)
                 localStorage.setItem("userId", nextProps.sinhVien.acc.data.sinhVienId);
                 localStorage.setItem("email", nextProps.sinhVien.acc.data.emailSinhVien);
@@ -140,7 +150,7 @@ class LoginSinhVien extends Component {
                     <div className="form sign-in">
                         <label>
                             <span style={{ color: "black" }}>Email</span>
-                            <input type="email" value={this.state.email} onChange={this.thayDoiEmail} />
+                            <input className="input" type="email" value={this.state.email} onChange={this.thayDoiEmail} />
                             {this.state.emailTrong ?
                                 <span style={{ color: "red", fontSize: "10px" }} >
                                     <i className="fas fa-exclamation-circle"></i>
@@ -150,7 +160,7 @@ class LoginSinhVien extends Component {
                         </label>
                         <label>
                             <span style={{ color: "black" }}>Mật khẩu</span>
-                            <input type="password" value={this.state.matKhau} onChange={this.nhapMatKhau} />
+                            <input className="input" type="password" value={this.state.matKhau} onChange={this.nhapMatKhau} />
                             {this.state.matKhauTrong ?
                                 <span style={{ color: "red", fontSize: "10px" }} >
                                     <i className="fas fa-exclamation-circle"></i>
@@ -159,7 +169,7 @@ class LoginSinhVien extends Component {
                                 : null}
                         </label>
                         <p className="forgot-pass" style={{ color: "black" }}>Quên mật khẩu?</p>
-                        <button type="button" class="submit" onClick={this.dangNhap}><b>Đăng nhập</b></button>
+                        <button type="button" className="submit" onClick={this.dangNhap}><b>Đăng nhập</b></button>
                     </div>
                     <div className="sub-cont">
                         <div className="img">
@@ -183,7 +193,7 @@ class LoginSinhVien extends Component {
                         <div className="form sign-up" style={{ marginTop: "-0.5em" }}>
                             <label>
                                 <span style={{ color: "black" }}>Họ và Tên</span>
-                                <input type="text" value={this.state.tenSinhVien} onChange={this.thayDoiTenSinhVien} />
+                                <input className="input" type="text" value={this.state.tenSinhVien} onChange={this.thayDoiTenSinhVien} />
                                 {this.state.tenTrong ?
                                     <span style={{ color: "red", fontSize: "10px" }} >
                                         <i className="fas fa-exclamation-circle"></i>
@@ -193,7 +203,7 @@ class LoginSinhVien extends Component {
                             </label>
                             <label>
                                 <span style={{ color: "black" }}>Email</span>
-                                <input type="email" value={this.state.email} onChange={this.thayDoiEmail} />
+                                <input className="input" type="email" value={this.state.email} onChange={this.thayDoiEmail} />
                                 {this.state.emailTrong ?
                                     <span style={{ color: "red", fontSize: "10px" }} >
                                         <i className="fas fa-exclamation-circle"></i>
@@ -210,7 +220,7 @@ class LoginSinhVien extends Component {
                             </label>
                             <label>
                                 <span style={{ color: "black" }}>Mật khẩu</span>
-                                <input type="password" onChange={this.nhapMatKhau} />
+                                <input className="input" type="password" onChange={this.nhapMatKhau} />
                                 {this.state.matKhauTrong ?
                                     <span style={{ color: "red", fontSize: "10px" }} >
                                         <i className="fas fa-exclamation-circle"></i>
@@ -220,7 +230,7 @@ class LoginSinhVien extends Component {
                             </label>
                             <label>
                                 <span style={{ color: "black" }}>Xác nhận mật khẩu</span>
-                                <input type="password" onChange={this.xacNhanMatKhau} />
+                                <input className="input" type="password" onChange={this.xacNhanMatKhau} />
                                 {this.state.xacNhanTrong ?
                                     <span style={{ color: "red", fontSize: "10px" }} >
                                         <i className="fas fa-exclamation-circle"></i>

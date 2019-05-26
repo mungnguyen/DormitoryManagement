@@ -7,7 +7,7 @@ module.exports = function(passport){
     opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
     opts.secretOrKey = config.secret;
 
-    passport.use('jwt-sv', new Strategy(opts, function(jwt_payload, done) {
+    passport.use('jwt-sinhvien', new Strategy(opts, function(jwt_payload, done) {
         db.SinhVien.findOne({
             where: {
               sinhVienId: jwt_payload.id

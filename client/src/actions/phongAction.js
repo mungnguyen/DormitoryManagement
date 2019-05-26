@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { HIEN_THI_CAC_PHONG, LAY_PHONG_ID, THEM_PHONG, SUA_PHONG, XOA_PHONG, API_CALLING} from './types';
+import { HIEN_THI_CAC_PHONG, LAY_PHONG_ID, THEM_PHONG, SUA_PHONG, XOA_PHONG, THEM_SINH_VIEN, API_CALLING} from './types';
 
 export const hienThiCacPhong = () => dispatch => {
     dispatch({
@@ -8,7 +8,7 @@ export const hienThiCacPhong = () => dispatch => {
         console.log("Hien thi cac phong trong ki tuc xa")
     )
     axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('token');
-    axios.get('/api/admin/hienthicacphong/').then(
+    axios.get('/api/hienthicacphong/').then(
         res => dispatch(
             {
                 type: HIEN_THI_CAC_PHONG,
@@ -75,6 +75,23 @@ export const suaPhong = (id, tenPhong, loaiPhong, soSinhVienMax, khuNhaId) => di
     }).then(
         res => dispatch({
             type: SUA_PHONG,
+            payload: res.data
+        })
+    )
+}
+
+export const themSinhVien = (id, soSinhVien) => dispatch => {
+    dispatch({
+        type: API_CALLING
+    },
+        console.log("THEM_SINH_VIEN")
+    )
+    axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('token');
+    axios.put('/api/admin/suaphong/' + id, {
+        soSinhVien: soSinhVien
+    }).then(
+        res => dispatch({
+            type: THEM_SINH_VIEN,
             payload: res.data
         })
     )

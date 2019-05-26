@@ -59,17 +59,6 @@ input, button {
           transform: translate3d(-640px, 0, 0);
 }
 
-button {
-  display: block;
-  margin: 0 auto;
-  width: 260px;
-  height: 36px;
-  border-radius: 30px;
-  color: #fff;
-  font-size: 15px;
-  cursor: pointer;
-}
-
 .img {
   overflow: hidden;
   z-index: 2;
@@ -209,7 +198,7 @@ label span {
   text-transform: uppercase;
 }
 
-input {
+.input {
   display: block;
   width: 100%;
   margin-top: 5px;
@@ -227,10 +216,17 @@ input {
 }
 
 .submit {
-  margin-top: 40px;
-  margin-bottom: 20px;
   background: #d4af7a;
   text-transform: uppercase;
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 100px;
+  height: 36px;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 .fb-btn {

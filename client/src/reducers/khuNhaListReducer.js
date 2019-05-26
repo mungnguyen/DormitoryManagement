@@ -15,10 +15,10 @@ export default function(state = initialState, action) {
     }
 
     case HIEN_THI_CAC_KHU_NHA: {
+      console.log("Hien thi cac khu nha ok")
       return {
         ...state,
-        KhuNhas: action.payload,
-        callapidone: true
+        KhuNhas: action.payload
       };
     }
 

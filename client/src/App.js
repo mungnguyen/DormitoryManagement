@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import LoginAdmin from './components/admin/loginPage';
 import AdminHome from './components/admin/adminHome';
 import QuanLyPhong from './components/admin/quanLyPhongPage';
+import QuanLyĐonangKi from './components/admin/quanLyDonDangKi';
 import LoginSinhVien from './components/sinhvien/login';
 import SinhVienHome from './components/sinhvien/home';
+import QuanLyDonDangKi from './components/admin/quanLyDonDangKi';
 
 const PrivateRouteAdmin = ({ component: Component, ...rest }) => (
   <Route {...rest}
-    render={props => localStorage.getItem("signined") ?
-      <Component {...props} /> : <Redirect to="/" />}
+    render={props => localStorage.getItem("signined") && (localStorage.getItem("role") == "admin") ?
+      <Component {...props} /> : <Redirect to="/admin" />}
   />
 )
 
@@ -31,6 +33,7 @@ class App extends Component {
               <Route exact path='/admin' component={LoginAdmin} />
               <PrivateRouteAdmin exact path='/admin/home' component={AdminHome} />
               <PrivateRouteAdmin exact path='/admin/quan-ly-phong' component={QuanLyPhong} />
+              <PrivateRouteAdmin exact path='/admin/quan-ly-don-dang-ki' component={QuanLyDonDangKi} />
               {/*
          <Route exact path='/contact' component={contactPage}/>
          <PrivateRoute exact path='/user' component={userInfo}/>

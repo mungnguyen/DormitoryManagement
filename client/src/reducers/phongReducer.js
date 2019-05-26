@@ -1,4 +1,4 @@
-import { HIEN_THI_CAC_PHONG, LAY_PHONG_ID, THEM_PHONG, SUA_PHONG, XOA_PHONG, API_CALLING } from '../actions/types';
+import { HIEN_THI_CAC_PHONG, LAY_PHONG_ID, THEM_PHONG, SUA_PHONG, XOA_PHONG, THEM_SINH_VIEN, API_CALLING } from '../actions/types';
 
 const initialState = {
     Phongs: [],
@@ -19,8 +19,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 success: action.payload.success,
-                Phongs: action.payload.data,
-                callapidone: true
+                Phongs: action.payload.data
             };
         }
 
@@ -34,6 +33,7 @@ export default function (state = initialState, action) {
         }
 
         case THEM_PHONG: {
+            console.log("THEM_PHONG_OK")
             return {
                 ...state,
                 callapidone: true
@@ -41,6 +41,15 @@ export default function (state = initialState, action) {
         }
 
         case SUA_PHONG: {
+            console.log("SUA_PHONG_OK")
+            return {
+                ...state,
+                callapidone: true
+            }
+        }
+
+        case THEM_SINH_VIEN: {
+            console.log("THEM_SINH_VIEN_OK")
             return {
                 ...state,
                 callapidone: true
@@ -48,6 +57,7 @@ export default function (state = initialState, action) {
         }
 
         case XOA_PHONG: {
+            console.log("XOA_PHONG_OK")
             return {
                 ...state,
                 callapidone: true

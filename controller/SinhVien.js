@@ -60,7 +60,7 @@ const login = (req, res) => {
     res.status(200).json({ 
       success: true,
       token: token,
-      sinhVien: sinhVien });
+      data: sinhVien });
     
   }).catch(err => {
     res.status(500).json('Error -> ' + err);

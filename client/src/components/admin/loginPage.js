@@ -29,8 +29,9 @@ class LoginAdmin extends Component {
                 console.log("LOGIN_SUCCESS")
                 localStorage.setItem("signined", nextProps.admin.acc.success)
                 localStorage.setItem("userId", nextProps.admin.acc.data.adminId);
-                localStorage.setItem("taikhoan", nextProps.admin.acc.data.tenAdmin)
-                localStorage.setItem("token", nextProps.admin.acc.token)
+                localStorage.setItem("taikhoan", nextProps.admin.acc.data.tenAdmin);
+                localStorage.setItem("token", nextProps.admin.acc.token);
+                localStorage.setItem("role", "admin");
                 console.log(nextProps.admin.acc.data.matKhauAdmin == "12345");
 
                 if (nextProps.admin.acc.data.matKhauAdmin == "12345" && (!this.state.flagChangePass)) {

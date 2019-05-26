@@ -18,13 +18,21 @@ class PhongList extends Component {
             themMoi: false,
             openAddModal: false,
             idDel: "",
-            tenKhuNhaChoose: "Tất cả các khu nhà"
+            tenKhuNhaChoose: "Tất cả các khu nhà",
+            selectNam: true
         }
     }
 
     componentDidMount = () => {
         this.props.hienThiCacKhuNha();
         this.props.hienThiCacPhong();
+    }
+
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.phong.callapidone && (nextProps.phong.callapidone != this.props.phong.callapidone)) {
+            this.props.hienThiCacKhuNha();
+            this.props.hienThiCacPhong();
+        }
     }
 
     chonKhuNha = (event) => {
@@ -44,11 +52,12 @@ class PhongList extends Component {
                 openAddModal: !this.state.openAddModal,
                 themMoi: false,
                 tenPhong: "",
-                loaiPhong: "",
+                loaiPhong: "Nam",
                 soSVMax: "8",
                 tenKhuNha: "",
                 idKhuNha: "",
-                idDel: ""
+                idDel: "",
+                selectNam: true
             })
         }
     }
@@ -59,10 +68,34 @@ class PhongList extends Component {
         });
     }
 
+    chonGioiTinhNam = () => {
+        this.setState({
+            selectNam: true
+        })
+    }
+
+    chonGioiTinhNu = () => {
+        this.setState({
+            selectNam: false
+        })
+    }
+
     thayDoiLoaiPhong = (event) => {
         this.setState({
             loaiPhong: event.target.value
-        });
+        },
+            () => {
+                if (this.state.loaiPhong == "Nam") {
+                    this.setState({
+                        selectNam: true
+                    })
+                } else if (this.state.loaiPhong == "Nữ") {
+                    this.setState({
+                        selectNam: false
+                    })
+                }
+            }
+        );
     }
 
     thayDoiSoSinhVienMax = event => {
@@ -93,13 +126,11 @@ class PhongList extends Component {
         if (this.state.themMoi) {
             if (this.state.tenPhong && this.state.loaiPhong && this.state.soSVMax && this.state.idKhuNha) {
                 this.props.themPhong(this.state.tenPhong, this.state.loaiPhong, this.state.soSVMax, this.state.idKhuNha);
-                this.props.hienThiCacPhong();
                 this.openModal();
             }
         } else {
             if (this.state.id && this.state.tenPhong && this.state.loaiPhong && this.state.soSVMax && this.state.idKhuNha) {
-                this.props.suaPhong(this.state.id, this.state.tenKhuNha, this.state.diaChi, this.state.quanLyKhuNha, this.state.SDT);
-                this.props.hienThiCacPhong();
+                this.props.suaPhong(this.state.id, this.state.tenPhong, this.state.loaiPhong, this.state.soSVMax, this.state.idKhuNha);
                 this.openModal();
             }
         }
@@ -112,9 +143,8 @@ class PhongList extends Component {
     }
 
     clickXoaPhong = () => {
-        if(this.state.idDel) {
+        if (this.state.idDel) {
             this.props.xoaPhong(this.state.idDel);
-            this.props.hienThiCacPhong();
             this.setState({
                 idDel: ""
             });
@@ -122,7 +152,6 @@ class PhongList extends Component {
     }
 
     render() {
-        console.log(this.props.phong.Phongs)
         return (
             <div className="row khu-nha">
                 <div className="col-md-6" style={{ marginTop: "1em", marginRight: "0" }}>
@@ -222,19 +251,19 @@ class PhongList extends Component {
                                 </Input>
                                 <br />
                                 <i>Loại Phòng: </i>
-                                <select onChange={this.thayDoiLoaiPhong}>
+                                <select value={this.state.loaiPhong} onChange={this.thayDoiLoaiPhong}>
                                     {this.state.loaiPhong == "Nam" ?
                                         <option value="Nam">Nam</option>
                                         :
                                         <option value="Nữ">Nữ</option>
                                     }
-                                    {!(this.state.loaiPhong == "Nam") ?
+                                    {this.state.loaiPhong != "Nam" ?
                                         <option value="Nam">Nam</option>
                                         :
                                         <option value="Nữ">Nữ</option>
                                     }
-
                                 </select>
+
                                 <br />
                                 <br />
                                 <i>Số sinh viên tối đa:</i>
@@ -244,7 +273,7 @@ class PhongList extends Component {
                                 ></Input>
                                 <br />
                                 <i>Khu: </i>
-                                {this.state.khuNhaId ?
+                                {this.state.themMoi ?
                                     <select onChange={this.thayDoiKhuNha}>
                                         {this.props.khuNha.KhuNhas ? this.props.khuNha.KhuNhas.map(
                                             item =>

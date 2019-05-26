@@ -8,7 +8,7 @@ export const hienThiCacKhuNha = () => dispatch => {
         console.log("Hien thi cac khu nha trong ki tuc xa")
     )
     axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('token');
-    axios.get('/api/admin/hienthicackhunha').then(
+    axios.get('/api/hienthicackhunha').then(
         res => dispatch(
             {
                 type: HIEN_THI_CAC_KHU_NHA,
