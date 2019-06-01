@@ -10,6 +10,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        hoTen: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         matKhauAdmin: {
             type: DataTypes.STRING,
             allowNull: false,

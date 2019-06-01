@@ -69,12 +69,16 @@ Object.keys(db).forEach(modelName => {
   db.DienNuoc.belongsTo(db.ThuChi, { foreignKey: {name:'thuChiId'} });
 
   //Phong - ThietBi_Phong
-  db.Phong.hasMany(db.ThietBi_Phong, { foreignKey: {name:'phongId', allowNull: false} });
-  db.ThietBi_Phong.belongsTo(db.Phong, { foreignKey: {name:'phongId', allowNull: false} });
+  db.Phong.hasMany(db.ThietBi_Phong, { foreignKey: {name:'phongId'} });
+  db.ThietBi_Phong.belongsTo(db.Phong, { foreignKey: {name:'phongId'} });
 
   // //Thiet Bi - ThietBi_Phong
   db.ThietBi.hasMany(db.ThietBi_Phong, { foreignKey: {name:'thietBiId', allowNull: false} });
   db.ThietBi_Phong.belongsTo(db.ThietBi, { foreignKey: {name:'thietBiId', allowNull: false} });
+
+  //ThietBi - Kho
+  db.ThietBi.hasMany(db.Kho, { foreignKey: {name:'thietBiId', allowNull: false} });
+  db.Kho.belongsTo(db.ThietBi, { foreignKey: {name:'thietBiId', allowNull: false} });
 
   //ThietBi_ThuChi - Thu Chi
   db.ThuChi.hasOne(db.ThietBi, { foreignKey: {name:'thuChiId'} });

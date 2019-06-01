@@ -10,6 +10,10 @@ module.exports = function(app) {
   const Phong = require('../controller/Phong');
   const DonDangKi = require('../controller/DonDangKi');
   const HopDong = require('../controller/HopDong');
+  const ThuChi = require('../controller/ThuChi');
+  const DonRoiKTX = require('../controller/DonRoiKTX');
+  const DienNuoc = require('../controller/DienNuoc');
+  const ThietBi = require('../controller/ThietBi');
 
 //Admin
   //Usage: Login - arguments: tenAdmin, matKhauAdmin
@@ -41,6 +45,26 @@ module.exports = function(app) {
   app.post('/api/admin/taohopdong', passport.authenticate('jwt-admin', {session: false}), HopDong.themHopDong);
   app.put('/api/admin/thaydoitrangthaihopdong/:hopDongId', passport.authenticate('jwt-admin', {session: false}), HopDong.suaThongTinHopDong);
 
+  //Don Roi KTX
+  app.get('/api/admin/hienthicacdonroiktx', passport.authenticate('jwt-admin', {session: false}), DonRoiKTX.hienThiCacDonRoiKTX);
+  app.put('/api/admin/thaydoitrangthaidonroiktx', passport.authenticate('jwt-admin', {session: false}), DonRoiKTX.suaThongTinDonRoiKTX);
+
+  //Dien Nuoc
+  app.get('/api/admin/hienthicachoadondiennuoc', passport.authenticate('jwt-admin', {session: false}), DienNuoc.hienThiCacHoaDonDienNuoc);
+  app.post('/api/admin/taodiennuoc', passport.authenticate('jwt-admin', {session: false}), DienNuoc.taoDienNuoc);
+  app.put('/api/admin/thaydoitrangthaidiennuoc/:dienNuocId', passport.authenticate('jwt-admin', {session: false}), DienNuoc.suaThongTinDienNuoc);
+  
+  //Thiet Bi
+  app.get('/api/admin/hienthicacthietbi', passport.authenticate('jwt-admin', {session: false}), ThietBi.hienThiCacThietBi);
+  app.post('/api/admin/themthietbi', passport.authenticate('jwt-admin', {session: false}), ThietBi.themThietBi);
+  app.post('/api/admin/nhapthietbi', passport.authenticate('jwt-admin', {session: false}), ThietBi.nhapThietBi);
+  app.post('/api/admin/themthietbivaophong', passport.authenticate('jwt-admin', {session: false}), ThietBi.themThietBiVaoPhong);
+
+  //Thu Chi
+  app.get('/api/admin/hienthicachoadon', passport.authenticate('jwt-admin', {session: false}), ThuChi.hienThiTatCaHoaDon);
+  app.post('/api/admin/taohoadonhopdong', passport.authenticate('jwt-admin', {session: false}), ThuChi.themHoaDonHopDong);
+  app.post('/api/admin/taohoadondiennuoc', passport.authenticate('jwt-admin', {session: false}), ThuChi.themHoaDonDienNuoc);
+  app.post('/api/taohoadon', passport.authenticate('jwt-admin', {session: false}), ThuChi.themHoaDon);
 
 //SinhVien
   //Usage: SignUp - arguments: tenSinhVien, emailSinhVien, matKhauSinhVien, gioiTinh
@@ -57,4 +81,9 @@ module.exports = function(app) {
   app.get('/api/sinhvien/hienthidondangkisinhvien', passport.authenticate('jwt-sinhvien', {session: false}), DonDangKi.timDonDangKiCuaSinhVien);
   app.get('/api/sinhvien/kiemtrasinhvienthuocktx', passport.authenticate('jwt-sinhvien', {session: false}), HopDong.kiemTraSinhVienThuocKTX);
   app.post('/api/sinhvien/themdondangki', passport.authenticate('jwt-sinhvien', {session: false}), DonDangKi.themDonDangKi);
+
+  //Roi KTX
+  app.get('/api/sinhvien/hienthicacdonroiktx', passport.authenticate('jwt-sinhvien', {session: false}), DonRoiKTX.timDonRoiKTXCuaSinhVien);
+  app.post('/api/sinhvien/roiktx', passport.authenticate('jwt-sinhvien', {session: false}), DonRoiKTX.themDonRoiKTX);
+  
 }

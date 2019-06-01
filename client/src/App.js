@@ -3,10 +3,15 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import LoginAdmin from './components/admin/loginPage';
 import AdminHome from './components/admin/adminHome';
 import QuanLyPhong from './components/admin/quanLyPhongPage';
-import QuanLyĐonangKi from './components/admin/quanLyDonDangKi';
 import LoginSinhVien from './components/sinhvien/login';
 import SinhVienHome from './components/sinhvien/home';
 import QuanLyDonDangKi from './components/admin/quanLyDonDangKi';
+import QuanLyHopDong from './components/admin/quanLyHopDong';
+import QuanLySVTrongKTX from './components/admin/quanLySVTrongKTX';
+import QuanLySVRoiKTX from './components/admin/quanLySVRoiKTX';
+import QuanLyThietBi from './components/admin/quanLyThietBi';
+import QuanLyThuChi from './components/admin/quanLyThuChi';
+import QuanLyDienNuoc from './components/admin/quanLyDienNuoc';
 
 const PrivateRouteAdmin = ({ component: Component, ...rest }) => (
   <Route {...rest}
@@ -34,10 +39,13 @@ class App extends Component {
               <PrivateRouteAdmin exact path='/admin/home' component={AdminHome} />
               <PrivateRouteAdmin exact path='/admin/quan-ly-phong' component={QuanLyPhong} />
               <PrivateRouteAdmin exact path='/admin/quan-ly-don-dang-ki' component={QuanLyDonDangKi} />
-              {/*
-         <Route exact path='/contact' component={contactPage}/>
-         <PrivateRoute exact path='/user' component={userInfo}/>
-         <Route exact path='/detailpage' component={detailPage}/> */}
+              <PrivateRouteAdmin exact path='/admin/quan-ly-hop-dong' component={QuanLyHopDong} />
+              <PrivateRouteAdmin exact path='/admin/quan-ly-sinh-vien-trong-ktx' component={QuanLySVTrongKTX} />
+              <PrivateRouteAdmin exact path='/admin/quan-ly-sinh-vien-roi-ktx' component={QuanLySVRoiKTX} />
+              <PrivateRouteAdmin exact path='/admin/quan-ly-thiet-bi' component={QuanLyThuChi} />
+              <PrivateRouteAdmin exact path='/admin/quan-ly-thu-chi' component={QuanLyThietBi} />
+              <PrivateRouteAdmin exact path='/admin/quan-ly-dien-nuoc' component={QuanLyDienNuoc} />
+
               {/* Sinh Vien */}
               <Route exact path='/' component={LoginSinhVien} />
               <PrivateRouteStudent exact path='/home' component={SinhVienHome} />

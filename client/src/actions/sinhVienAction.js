@@ -1,6 +1,6 @@
 import {
     API_CALLING, LOGIN_SINH_VIEN, SIGNUP_SINH_VIEN, SIGNUP_ERROR, LOGIN_ERROR,
-    DANG_KI_PHONG, KIEM_TRA_SINH_VIEN_THUOC_KTX
+    DANG_KI_PHONG, KIEM_TRA_SINH_VIEN_THUOC_KTX, ROI_KTX
 } from './types';
 import axios from 'axios';
 
@@ -122,4 +122,24 @@ export const kiemTraSinhVienThuocKTX = () => dispatch => {
             })
         }
     })
+}
+
+
+export const roiktx = () => dispatch => {
+    dispatch({
+        type: API_CALLING
+    },
+        console.log("ROI_KTX")
+    )
+
+    axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('token');
+    axios.post('/api/sinhvien/roiktx', {
+        ngayVietDon: new Date
+    }).then(res => {
+        dispatch({
+            type: ROI_KTX,
+            payload: res.data
+        })
+    })
+
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, Input} from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import ModalChangePass from './loginPage/modalChangePass'
 import '../../css/adminLogin/util.css';
@@ -24,12 +24,13 @@ class LoginAdmin extends Component {
     }
 
     componentWillReceiveProps = (nextProps) => {
-        if(nextProps.admin.callapidone) {
-            if(nextProps.admin.acc.success) {
+        if (nextProps.admin.callapidone) {
+            if (nextProps.admin.acc.success) {
                 console.log("LOGIN_SUCCESS")
                 localStorage.setItem("signined", nextProps.admin.acc.success)
                 localStorage.setItem("userId", nextProps.admin.acc.data.adminId);
                 localStorage.setItem("taikhoan", nextProps.admin.acc.data.tenAdmin);
+                localStorage.setItem("name", nextProps.admin.acc.data.hoTen);
                 localStorage.setItem("token", nextProps.admin.acc.token);
                 localStorage.setItem("role", "admin");
                 console.log(nextProps.admin.acc.data.matKhauAdmin == "12345");
@@ -53,7 +54,7 @@ class LoginAdmin extends Component {
             }
         }
     }
-    
+
 
     nhapTaiKhoan = (event) => {
         this.setState({
@@ -80,7 +81,7 @@ class LoginAdmin extends Component {
             () => this.kiemTraNhapMatKhau()
         );
     }
-       
+
 
     kiemTraNhapMatKhau = () => {
         this.setState({
@@ -113,10 +114,10 @@ class LoginAdmin extends Component {
     }
 
     render() {
-        return(
+        return (
             <div className="limiter">
-                <div className="container-login100" style={{paddingTop: "0"}}>
-                    <div className="wrap-login100" style={{marginTop: "0"}}>
+                <div className="container-login100" style={{ paddingTop: "0" }}>
+                    <div className="wrap-login100" style={{ marginTop: "0" }}>
                         <div className="login100-form-title">
                             <span class="login100-form-title-1">
                                 <b>Đăng nhập</b>
@@ -126,38 +127,38 @@ class LoginAdmin extends Component {
                         <Form className="login100-form validate-form">
                             <div className="wrap-input100 validate-input m-b-26">
                                 <span className="label-input100">Tên đăng nhập</span>
-                                <input className="input100" 
-                                       value={this.state.taiKhoan} 
-                                       type="text" 
-                                       onChange={this.nhapTaiKhoan} 
-                                       placeholder="Nhập tên của bạn" />
+                                <input className="input100"
+                                    value={this.state.taiKhoan}
+                                    type="text"
+                                    onChange={this.nhapTaiKhoan}
+                                    placeholder="Nhập tên của bạn" />
                                 <span className="focus-input100"></span>
                             </div>
                             <span>
-                            { this.state.taiKhoanRong ?
-                                    <span style={{ color: "red", fontSize: "15px"}} >
+                                {this.state.taiKhoanRong ?
+                                    <span style={{ color: "red", fontSize: "15px" }} >
                                         <i className="fas fa-exclamation-circle"></i>
                                         <span> Tên đăng nhập trống</span>
                                     </span>
-                                    :null}
+                                    : null}
                             </span>
 
                             <div className="wrap-input100 validate-input m-b-18">
                                 <span className="label-input100">Mật khẩu</span>
-                                <input className="input100" 
-                                       type="password" 
-                                       value={this.state.matKhau} 
-                                       onChange={this.nhapMatKhau} 
-                                       placeholder="Nhập mật khẩu" />
+                                <input className="input100"
+                                    type="password"
+                                    value={this.state.matKhau}
+                                    onChange={this.nhapMatKhau}
+                                    placeholder="Nhập mật khẩu" />
                                 <span className="focus-input100"></span>
                             </div>
                             <span>
-                            { this.state.matKhauRong ?
-                                    <span style={{ color: "red", fontSize: "15px"}} >
+                                {this.state.matKhauRong ?
+                                    <span style={{ color: "red", fontSize: "15px" }} >
                                         <i className="fas fa-exclamation-circle"></i>
                                         <span> Mật khẩu trống</span>
                                     </span>
-                                    :null}
+                                    : null}
                             </span>
 
                             <div className="flex-sb-m w-full p-b-30">
@@ -176,7 +177,7 @@ class LoginAdmin extends Component {
                             </div>
 
                             <div className="container-login100-form-btn">
-                                <Button class="login100-form-btn" onClick={this.dangNhap} style={{marginLeft: "5.5em", backgroundColor:"blue"}}>
+                                <Button class="login100-form-btn" onClick={this.dangNhap} style={{ marginLeft: "5.5em", backgroundColor: "blue" }}>
                                     Đăng nhập
                                 </Button>
                             </div>
@@ -198,7 +199,7 @@ class LoginAdmin extends Component {
 
                 {/* Doi mat khau */}
                 <ModalChangePass open={this.state.doiMatKhau}
-                                 doiMatKhau={this.doiMatKhau}
+                    doiMatKhau={this.doiMatKhau}
                 />
             </div>
         )
@@ -217,4 +218,4 @@ const mapActiontoProps = dispatch => {
     }
 }
 
-export default withRouter( connect (mapStatetoProps, mapActiontoProps)( LoginAdmin ))
+export default withRouter(connect(mapStatetoProps, mapActiontoProps)(LoginAdmin))

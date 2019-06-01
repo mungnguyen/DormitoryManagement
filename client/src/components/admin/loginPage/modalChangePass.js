@@ -15,7 +15,7 @@ class ModalChangePass extends Component {
             xacNhan: "",
             xacNhanTrong: false,
             trungNhau: true,
-            loi: "false"
+            loi: false
         }
     }
 
@@ -27,7 +27,7 @@ class ModalChangePass extends Component {
             } else {
                 if (!this.state.loi)
                     this.setState({
-                        loi: "true"
+                        loi: true
                     })
             }
         }
@@ -85,8 +85,10 @@ class ModalChangePass extends Component {
                         </div>
                         :
                         <div>
-                            <p>{this.props.admin.doiMatKhau.message}</p>
-                            <p>Vui lòng nhập lại</p>
+                            <p>Bạn đã đăng nhập với tài khoản mặc định.</p>
+                            {/* <p>{this.props.admin.doiMatKhau.message}</p> */}
+                            {/* <p>Vui lòng nhập lại</p> */}
+                            <p>Vui lòng đổi mật khẩu</p>
                         </div>}
 
                 </ModalHeader>

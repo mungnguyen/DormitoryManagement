@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Col, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import '../../../style/khuNha.css';
+import { themSinhVien } from '../../../actions/phongAction';
 import { hienThiCacDonDangKi, thayDoiTrangThaiDonDangKi, taoHopDong } from '../../../actions/quanLyDangKiAction';
 
 class DonDangKiList extends Component {
@@ -39,7 +40,7 @@ class DonDangKiList extends Component {
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.quanLyDangKi.taoHopDong && (nextProps.quanLyDangKi.taoHopDong != this.props.quanLyDangKi.taoHopDong)) {
             this.props.hienThiCacDonDangKi();
-            this.props.history.push('/admin/home');
+            this.props.history.push('/admin/quan-ly-hop-dong');
         } else if (nextProps.quanLyDangKi.thayDoiTrangThaiDon && (nextProps.quanLyDangKi.thayDoiTrangThaiDon != this.props.quanLyDangKi.thayDoiTrangThaiDon)) {
             this.props.hienThiCacDonDangKi();
         }
@@ -129,6 +130,7 @@ class DonDangKiList extends Component {
             })
         } else {
             this.props.thayDoiTrangThaiDonDangKi(this.state.idDangKi, "Đã chấp nhận");
+            this.props.themSinhVien(this.state.phongDangKi.phongId, this.state.phongDangKi.soSinhVien + 1);
             this.props.taoHopDong(ngayBatDau, ngayKetThuc, this.state.tongSoTien, this.state.sinhVienDangKi.sinhVienId, this.state.phongDangKi.phongId);
             this.setState({
                 khuDangKi: "",
@@ -402,6 +404,7 @@ const mapActiontoProps = dispatch => {
     return {
         hienThiCacDonDangKi: () => dispatch(hienThiCacDonDangKi()),
         thayDoiTrangThaiDonDangKi: (id, trangThai) => dispatch(thayDoiTrangThaiDonDangKi(id, trangThai)),
+        themSinhVien: (id, soSinhVien) => dispatch(themSinhVien(id, soSinhVien)),
         taoHopDong: (ngayBatDau, ngayKetThuc, tongSoTien, sinhVienId, phongId) => dispatch(taoHopDong(ngayBatDau, ngayKetThuc, tongSoTien, sinhVienId, phongId))
     }
 }
